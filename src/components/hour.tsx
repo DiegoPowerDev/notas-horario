@@ -36,7 +36,7 @@ export default function Hour({ start, end, dia, hourValue }: HourProps) {
       }}
       style={{ background: isActive ? theme : secondary, color: text }}
       className={`
-       cursor-pointer w-full text-xs p-2 border rounded-lg 
+       cursor-pointer w-full text-xs p-1 md:p-2 border rounded-lg 
         transition-all duration-200 font-medium
         ${isActive ? " " : "hover:opacity-70  "}
       `}
