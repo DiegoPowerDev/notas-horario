@@ -88,7 +88,7 @@ function Schedule() {
                 onClick={handleClearAll}
                 className="px-4 py-2 flex gap-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition-colors shadow-lg"
               >
-                <span className="hidden md:block">Limpiar Todo</span>{" "}
+                <span className="hidden md:block">Limpiar Todo</span>
                 <IconTrash />
               </button>
             </div>
@@ -99,8 +99,8 @@ function Schedule() {
                   style={{ background: secondary }}
                   className="flex flex-col h-full"
                 >
-                  <div className="rounded-t-lg p-2 ">
-                    <div className="font-bold text-center text-lg truncate">
+                  <div className="rounded-t-lg p-1 md:p-2 ">
+                    <div className="font-bold text-center md:text-lg truncate">
                       {day}
                     </div>
                     <div className="text-center text-sm ">
