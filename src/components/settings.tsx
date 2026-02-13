@@ -22,12 +22,12 @@ export default function Settings() {
   return (
     <div
       style={{ background: background, color: text }}
-      className="flex  flex-row md:gap-8 items-center h-full justify-center md:items-start"
+      className="flex flex-col  md:flex-row md:gap-8 items-center h-full justify-center md:items-start"
     >
-      <div className=" flex flex-col gap-2 p-2 md:p-4">
+      <div className=" flex flex-col gap-2 p-4">
         <div
           style={{ background: secondary }}
-          className="p-2 md:p-4 flex flex-col gap-2 rounded w-fit"
+          className=" p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Fondo</div>
           <div className="flex gap-2 items-center">
@@ -47,7 +47,7 @@ export default function Settings() {
         </div>
         <div
           style={{ background: secondary }}
-          className="p-2 md:p-4 flex flex-col gap-2 rounded w-fit"
+          className=" p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Color Secundario</div>
           <div className="flex gap-2 items-center">
@@ -67,7 +67,7 @@ export default function Settings() {
         </div>
         <div
           style={{ background: secondary }}
-          className="p-2 md:p-4 flex flex-col gap-2 rounded w-fit"
+          className=" p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Tema</div>
           <div className="flex gap-2 items-center">
@@ -87,7 +87,7 @@ export default function Settings() {
         </div>
         <div
           style={{ background: secondary }}
-          className="p-2 md:p-4 flex flex-col gap-2 rounded w-fit"
+          className=" p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Texto</div>
           <div className="flex gap-2 items-center">
@@ -106,10 +106,10 @@ export default function Settings() {
           </div>
         </div>
       </div>
-      <div className="text-white flex flex-col gap-2 p-2 md:p-4">
+      <div className="text-white flex flex-col gap-2  p-4">
         <div
           style={{ background: secondary }}
-          className="p-2 md:p-4 flex flex-col gap-2 rounded w-fit"
+          className=" p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Fondo de los Blocks</div>
           <div className="flex gap-2 items-center">
@@ -129,7 +129,7 @@ export default function Settings() {
         </div>
         <div
           style={{ background: secondary }}
-          className="p-2 md:p-4 flex flex-col gap-2 rounded w-fit"
+          className=" p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Texto de los Blocks</div>
           <div className="flex gap-2 items-center">

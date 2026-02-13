@@ -99,7 +99,7 @@ function Schedule() {
                   style={{ background: secondary }}
                   className="flex flex-col h-full"
                 >
-                  <div className="rounded-t-lg p-1 md:p-2 ">
+                  <div className="rounded-t-lg p-1 md:p-2">
                     <div className="font-bold text-center md:text-lg truncate">
                       {day}
                     </div>
