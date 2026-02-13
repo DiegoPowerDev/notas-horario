@@ -29,6 +29,8 @@ interface ScheduleState {
   saveToFirestore: () => Promise<void>;
   toggleHour: (dia: string, hora: number) => void;
   clearAll: () => void;
+  time: number[];
+  setTime: (hora: number) => void;
 }
 
 const initialCalendario = {
@@ -53,7 +55,12 @@ export const useScheduleStore = create<ScheduleState>()((set, get) => ({
   },
   loading: false,
   totalHours: 0,
+  time: [],
 
+  setTime: (hora) =>
+    set((state) => ({
+      time: [...state.time, hora],
+    })),
   toggleHour: (dia: string, hora: number) => {
     set((state) => {
       const horasActuales =

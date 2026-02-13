@@ -1,6 +1,8 @@
 import Hour from "@/components/hour";
+import { clearAllTimers, useScheduleAlerts } from "@/hooks/scheduleAlert";
 import { cn } from "@/lib/utils";
 import { useScheduleStore } from "@/store/scheduleStore";
+import { useSettingsStore } from "@/store/settingsStore";
 import { IconTrash } from "@tabler/icons-react";
 import { useEffect } from "react";
 
@@ -31,6 +33,11 @@ function Schedule() {
   const loadUserData = useScheduleStore((state) => state.loadUserData);
   const loading = useScheduleStore((state) => state.loading);
   const schedule = useScheduleStore((state) => state.schedule);
+  const secondary = useSettingsStore((state) => state.secondary);
+  const text = useSettingsStore((state) => state.text);
+  const background = useSettingsStore((state) => state.background);
+  useScheduleAlerts();
+
   const days = [
     "Lunes",
     "Martes",
@@ -40,10 +47,9 @@ function Schedule() {
     "Sabado",
     "Domingo",
   ];
+
   const handleClearAll = () => {
-    if (
-      window.confirm("¿Estás seguro de que quieres borrar todo el horario?")
-    ) {
+    if (window.confirm("Reiniciar las horas")) {
       clearAll();
     }
   };
@@ -61,14 +67,20 @@ function Schedule() {
           </div>
         </div>
       ) : (
-        <div className={cn("  text-white flex flex-col gap-2 w-full ")}>
-          <div className="w-full xl:sticky flex flex-col top-0 bg-gray-900  gap-2">
-            <div className="  top-0 flex  flex-row items-center justify-center gap-4 bg-gray-800 p-2 rounded-xl shadow-lg">
+        <div
+          style={{ color: text }}
+          className={cn("flex flex-col gap-2 w-full ")}
+        >
+          <div
+            style={{ background: background }}
+            className="w-full xl:sticky flex flex-col top-0    gap-2"
+          >
+            <div className="  top-0 flex  flex-row items-center justify-center gap-4  p-2 rounded-xl  ">
               <div className="flex items-center justify-center gap-3">
                 <div className="font-bold lg:text-lg text-gray-200">
                   Horas totales de la semana:
                 </div>
-                <div className="font-bold px-4 py-2 bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-lg text-white shadow-lg">
+                <div className="font-bold px-4 py-2   rounded-lg   ">
                   {totalHours} {totalHours === 1 ? "hora" : "horas"}
                 </div>
               </div>
@@ -82,12 +94,16 @@ function Schedule() {
             </div>
             <div className=" grid  grid-cols-7 gap-2">
               {days.map((day, i) => (
-                <div key={i} className="flex flex-col h-full">
-                  <div className="bg-gray-800 rounded-t-lg p-2 border-b-2 border-emerald-500">
+                <div
+                  key={i}
+                  style={{ background: secondary }}
+                  className="flex flex-col h-full"
+                >
+                  <div className="rounded-t-lg p-2 ">
                     <div className="font-bold text-center text-lg truncate">
                       {day}
                     </div>
-                    <div className="text-center text-sm text-gray-400">
+                    <div className="text-center text-sm ">
                       {schedule[day as keyof typeof schedule].length}
                       {schedule[day as keyof typeof schedule].length === 1
                         ? " hora"
@@ -103,7 +119,10 @@ function Schedule() {
             {days.map((day) => (
               <div key={day} className="flex flex-col h-full">
                 {/* Horas del día */}
-                <div className="bg-gray-800/50 rounded-b-xl p-1 flex flex-col gap-1  ">
+                <div
+                  style={{ background: secondary }}
+                  className=" rounded-b-xl p-1 flex flex-col gap-1  "
+                >
                   {hours.map((hour, i) => (
                     <Hour
                       key={i}
