@@ -35,27 +35,34 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
   block: "#000000",
   textBlock: "#fafafa",
   setBackground: (color: string) => {
-    set({ background: `#${color}` });
+    // Si por error viene sin #, se lo aseguramos, si ya lo tiene, pasa limpio
+    const finalColor = color.startsWith("#") ? color : `#${color}`;
+    set({ background: finalColor });
     get().saveToFirestore();
   },
   setSecondary: (color: string) => {
-    set({ secondary: `#${color}` });
+    const finalColor = color.startsWith("#") ? color : `#${color}`;
+    set({ secondary: finalColor });
     get().saveToFirestore();
   },
   setTheme: (color: string) => {
-    set({ theme: `#${color}` });
+    const finalColor = color.startsWith("#") ? color : `#${color}`;
+    set({ theme: finalColor });
     get().saveToFirestore();
   },
   setText: (color: string) => {
-    set({ text: `#${color}` });
+    const finalColor = color.startsWith("#") ? color : `#${color}`;
+    set({ text: finalColor });
     get().saveToFirestore();
   },
   setBlock: (color: string) => {
-    set({ block: `#${color}` });
+    const finalColor = color.startsWith("#") ? color : `#${color}`;
+    set({ block: finalColor });
     get().saveToFirestore();
   },
   setTextBlock: (color: string) => {
-    set({ textBlock: `#${color}` });
+    const finalColor = color.startsWith("#") ? color : `#${color}`;
+    set({ textBlock: finalColor });
     get().saveToFirestore();
   },
   loading: false,
@@ -67,6 +74,7 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
       (snapshot) => {
         if (snapshot.exists()) {
           const data = snapshot.data();
+          console.log(data);
           set({
             background: data.background,
             secondary: data.secondary,

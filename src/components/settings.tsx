@@ -14,20 +14,25 @@ export default function Settings() {
   const textBlock = useSettingsStore((state) => state.textBlock);
   const setTextBlock = useSettingsStore((state) => state.setTextBlock);
 
+  // Asegura que el valor tenga el '#' solo para los estilos en línea y el input color
+  const ensureHash = (color: string) => {
+    return color.startsWith("#") ? color : `#${color}`;
+  };
+
   const formatColor = (value: string) => {
-    const formatedValue = value.replace("#", "");
-    return formatedValue;
+    return value.replace("#", "");
   };
 
   return (
     <div
-      style={{ background: background, color: text }}
-      className="flex flex-col  md:flex-row md:gap-8 items-center h-full justify-center md:items-start"
+      style={{ background: ensureHash(background), color: ensureHash(text) }}
+      className="flex flex-col md:flex-row md:gap-8 items-center h-full justify-center md:items-start"
     >
-      <div className=" flex flex-col gap-2 p-4">
+      <div className="flex flex-col gap-2 p-4">
+        {/* Fondo */}
         <div
-          style={{ background: secondary }}
-          className=" p-4 flex flex-col gap-2 rounded w-fit"
+          style={{ background: ensureHash(secondary) }}
+          className="p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Fondo</div>
           <div className="flex gap-2 items-center">
@@ -36,18 +41,30 @@ export default function Settings() {
               value={formatColor(background)}
               onChange={(e) => setBackground(formatColor(e.target.value))}
               type="text"
-              style={{ background: block, color: textBlock }}
+              style={{
+                background: ensureHash(block),
+                color: ensureHash(textBlock),
+              }}
               className="h-8 border w-32 rounded p-2"
             />
-            <span
-              style={{ background: background }}
-              className="h-8 w-8 border"
-            ></span>
+            <label
+              className="relative h-8 w-8 border cursor-pointer"
+              style={{ background: ensureHash(background) }}
+            >
+              <input
+                type="color"
+                value={ensureHash(background)}
+                onChange={(e) => setBackground(formatColor(e.target.value))}
+                className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+              />
+            </label>
           </div>
         </div>
+
+        {/* Color Secundario */}
         <div
-          style={{ background: secondary }}
-          className=" p-4 flex flex-col gap-2 rounded w-fit"
+          style={{ background: ensureHash(secondary) }}
+          className="p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Color Secundario</div>
           <div className="flex gap-2 items-center">
@@ -56,18 +73,30 @@ export default function Settings() {
               value={formatColor(secondary)}
               onChange={(e) => setSecondary(formatColor(e.target.value))}
               type="text"
-              style={{ background: block, color: textBlock }}
+              style={{
+                background: ensureHash(block),
+                color: ensureHash(textBlock),
+              }}
               className="h-8 border w-32 rounded p-2"
             />
-            <span
-              style={{ background: secondary }}
-              className="h-8 w-8 border"
-            ></span>
+            <label
+              className="relative h-8 w-8 border cursor-pointer"
+              style={{ background: ensureHash(secondary) }}
+            >
+              <input
+                type="color"
+                value={ensureHash(secondary)}
+                onChange={(e) => setSecondary(formatColor(e.target.value))}
+                className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+              />
+            </label>
           </div>
         </div>
+
+        {/* Tema */}
         <div
-          style={{ background: secondary }}
-          className=" p-4 flex flex-col gap-2 rounded w-fit"
+          style={{ background: ensureHash(secondary) }}
+          className="p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Tema</div>
           <div className="flex gap-2 items-center">
@@ -76,18 +105,30 @@ export default function Settings() {
               value={formatColor(theme)}
               onChange={(e) => setTheme(formatColor(e.target.value))}
               type="text"
-              style={{ background: block, color: textBlock }}
+              style={{
+                background: ensureHash(block),
+                color: ensureHash(textBlock),
+              }}
               className="h-8 border w-32 rounded p-2"
             />
-            <span
-              style={{ background: theme }}
-              className="h-8 w-8 border"
-            ></span>
+            <label
+              className="relative h-8 w-8 border cursor-pointer"
+              style={{ background: ensureHash(theme) }}
+            >
+              <input
+                type="color"
+                value={ensureHash(theme)}
+                onChange={(e) => setTheme(formatColor(e.target.value))}
+                className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+              />
+            </label>
           </div>
         </div>
+
+        {/* Texto */}
         <div
-          style={{ background: secondary }}
-          className=" p-4 flex flex-col gap-2 rounded w-fit"
+          style={{ background: ensureHash(secondary) }}
+          className="p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Texto</div>
           <div className="flex gap-2 items-center">
@@ -96,20 +137,32 @@ export default function Settings() {
               value={formatColor(text)}
               onChange={(e) => setText(formatColor(e.target.value))}
               type="text"
-              style={{ background: block, color: textBlock }}
+              style={{
+                background: ensureHash(block),
+                color: ensureHash(textBlock),
+              }}
               className="h-8 border w-32 rounded p-2"
             />
-            <span
-              style={{ background: text }}
-              className="h-8 w-8 border"
-            ></span>
+            <label
+              className="relative h-8 w-8 border cursor-pointer"
+              style={{ background: ensureHash(text) }}
+            >
+              <input
+                type="color"
+                value={ensureHash(text)}
+                onChange={(e) => setText(formatColor(e.target.value))}
+                className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+              />
+            </label>
           </div>
         </div>
       </div>
-      <div className="text-white flex flex-col gap-2  p-4">
+
+      <div className="text-white flex flex-col gap-2 p-4">
+        {/* Fondo de los Blocks */}
         <div
-          style={{ background: secondary }}
-          className=" p-4 flex flex-col gap-2 rounded w-fit"
+          style={{ background: ensureHash(secondary) }}
+          className="p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Fondo de los Blocks</div>
           <div className="flex gap-2 items-center">
@@ -118,18 +171,30 @@ export default function Settings() {
               value={formatColor(block)}
               onChange={(e) => setBlock(formatColor(e.target.value))}
               type="text"
-              style={{ background: block, color: textBlock }}
+              style={{
+                background: ensureHash(block),
+                color: ensureHash(textBlock),
+              }}
               className="h-8 border w-32 rounded p-2"
             />
-            <span
-              style={{ background: block }}
-              className="h-8 w-8 border"
-            ></span>
+            <label
+              className="relative h-8 w-8 border cursor-pointer"
+              style={{ background: ensureHash(block) }}
+            >
+              <input
+                type="color"
+                value={ensureHash(block)}
+                onChange={(e) => setBlock(formatColor(e.target.value))}
+                className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+              />
+            </label>
           </div>
         </div>
+
+        {/* Texto de los Blocks */}
         <div
-          style={{ background: secondary }}
-          className=" p-4 flex flex-col gap-2 rounded w-fit"
+          style={{ background: ensureHash(secondary) }}
+          className="p-4 flex flex-col gap-2 rounded w-fit"
         >
           <div className="font-bold">Texto de los Blocks</div>
           <div className="flex gap-2 items-center">
@@ -138,13 +203,23 @@ export default function Settings() {
               value={formatColor(textBlock)}
               onChange={(e) => setTextBlock(formatColor(e.target.value))}
               type="text"
-              style={{ background: block, color: textBlock }}
+              style={{
+                background: ensureHash(block),
+                color: ensureHash(textBlock),
+              }}
               className="h-8 border w-32 rounded p-2"
             />
-            <span
-              style={{ background: textBlock }}
-              className="h-8 w-8 border"
-            ></span>
+            <label
+              className="relative h-8 w-8 border cursor-pointer"
+              style={{ background: ensureHash(textBlock) }}
+            >
+              <input
+                type="color"
+                value={ensureHash(textBlock)}
+                onChange={(e) => setTextBlock(formatColor(e.target.value))}
+                className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+              />
+            </label>
           </div>
         </div>
       </div>

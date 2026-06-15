@@ -1,14 +1,20 @@
 import Cuadro from "@/components/form";
 import { useBlockStore } from "@/store/blockStore";
+import { useSettingsStore } from "@/store/settingsStore";
 import { useEffect } from "react";
 
 function Block() {
   const loadUserData = useBlockStore((s) => s.loadUserData);
+  const loadSettingsData = useSettingsStore((s) => s.loadUserData);
 
   useEffect(() => {
     const unsub = loadUserData();
     return () => unsub();
   }, [loadUserData]);
+
+  useEffect(() => {
+    loadSettingsData();
+  }, []);
 
   return (
     <form className="grid grid-cols-4 grid-rows-2  w-full  flex-1">
